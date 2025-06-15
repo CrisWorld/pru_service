@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_DATABASE_URL")
+}
+
+model User {
+  id                       String           @id @default(uuid())
+  name                     String           @db.VarChar(99)
+  email                    String           @unique @db.VarChar(99)
+  password                 String?          @db.VarChar(100)
+  refreshToken             String?          @db.Text
+  emailVerified            DateTime?
+  emailVerificationNumber  String?          @db.VarChar(100)
+  emailVerificationExpires DateTime?
+  passwordResetToken       String?          @db.VarChar(100)
+  passwordResetExpires     DateTime?
+  createdAt                DateTime         @default(now())
+  updatedAt                DateTime         @updatedAt
+  point                    Int              @default(0)
+  isLock                   Boolean          @default(false)
+  lockReason               String?          @db.Text
+  settingId                String?
+  userAvatars              UserAvatar[]
+  userBackgrounds          UserBackground[]
+  Setting                  Setting?
+}
+
+model Setting {
+  id           String @id @default(uuid())
+  userId       String @unique
+  userAvatarId String
+  backgroundId String
+
+  // Relations
+  user       User       @relation(fields: [userId], references: [id])
+  avatar     Avatar     @relation(fields: [userAvatarId], references: [id])
+  background Background @relation(fields: [backgroundId], references: [id])
+}
+
+model UserAvatar {
+  id        String   @id @default(uuid())
+  userId    String
+  avatarId  String
+  createdAt DateTime @default(now())
+
+  // Relations
+  user   User   @relation(fields: [userId], references: [id])
+  avatar Avatar @relation(fields: [avatarId], references: [id])
+
+  // Composite Unique (UserId + AvatarId)
+  @@unique([userId, avatarId])
+}
+
+model Avatar {
+  id        String   @id @default(uuid())
+  avatarURL String   @db.Text
+  createdAt DateTime @default(now())
+
+  // Relations
+  settings    Setting[]
+  userAvatars UserAvatar[]
+}
+
+model UserBackground {
+  id           String   @id @default(uuid())
+  userId       String
+  backgroundId String
+  createdAt    DateTime @default(now())
+
+  // Relations
+  user       User       @relation(fields: [userId], references: [id])
+  background Background @relation(fields: [backgroundId], references: [id])
+
+  @@unique([userId, backgroundId])
+}
+
+model Background {
+  id            String   @id @default(uuid())
+  backgroundURL String   @db.Text
+  createdAt     DateTime @default(now())
+
+  // Relations
+  settings        Setting[]
+  userBackgrounds UserBackground[]
+}
