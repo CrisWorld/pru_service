@@ -45,4 +45,63 @@ export class UserController extends BaseController {
       return await this.userService.addPoint(roomName);
     });
   }
+
+  buyAvatar = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    await this.handleRequest(req, res, next, async () => {
+      const { avatarId } = req.params;
+      const userId = req.user.userId;
+
+      if (!avatarId) {
+        throw new AppError("Avatar ID is required", 400);
+      }
+
+      return await this.userService.buyAvatar(userId, avatarId);
+    });
+  }
+
+  buyBackground = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    await this.handleRequest(req, res, next, async () => {
+      const { backgroundId } = req.params;
+      const userId = req.user.userId;
+
+      if (!backgroundId) {
+        throw new AppError("Background ID is required", 400);
+      }
+
+      return await this.userService.buyBackground(userId, backgroundId);
+    });
+  }
+
+  changeAvatar = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    await this.handleRequest(req, res, next, async () => {
+      const { avatarId } = req.params;
+      const userId = req.user.userId;
+
+      if (!avatarId) {
+        throw new AppError("Avatar ID is required", 400);
+      }
+
+      return await this.userService.changeAvatar(userId, avatarId);
+    });
+  }
+
+  changeBackground = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    await this.handleRequest(req, res, next, async () => {
+      const { backgroundId } = req.params;
+      const userId = req.user.userId;
+
+      if (!backgroundId) {
+        throw new AppError("Background ID is required", 400);
+      }
+
+      return await this.userService.changeBackground(userId, backgroundId);
+    });
+  }
+
+  getInventory = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    await this.handleRequest(req, res, next, async () => {
+      const userId = req.user.userId;
+      return await this.userService.getUserInventory(userId);
+    });
+  }
 }

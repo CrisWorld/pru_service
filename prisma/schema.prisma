@@ -58,6 +58,7 @@ model UserAvatar {
 model Avatar {
   id        String   @id @default(uuid())
   avatarURL String   @db.Text
+  price     Int      @default(0)
   createdAt DateTime @default(now())
 
   // Relations
@@ -82,6 +83,7 @@ model Background {
   id            String   @id @default(uuid())
   backgroundURL String   @db.Text
   createdAt     DateTime @default(now())
+  price         Int      @default(0)
 
   // Relations
   settings        Setting[]

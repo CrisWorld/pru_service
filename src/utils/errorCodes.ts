@@ -20,6 +20,7 @@ export enum ErrorCode {
   NOT_FOUND = "ERR_4001",
   ALREADY_EXISTS = "ERR_4002",
   CONFLICT = "ERR_4003",
+  NOT_ENOUGH_POINTS = "ERR_4004",
 
   // Database Errors (5xxx)
   DB_ERROR = "ERR_5001",

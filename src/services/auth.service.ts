@@ -166,8 +166,16 @@ export class AuthService {
       );
     }
 
-    const accessToken = this.generateAccessToken(user.id);
-    const refreshToken = this.generateRefreshToken(user.id);
+    const accessToken = this.generateAccessToken({
+      userId: user.id,
+      email: user.email,
+      name: user.name,
+    });
+    const refreshToken = this.generateRefreshToken({
+      userId: user.id,
+      email: user.email,
+      name: user.name,
+    });
 
     // Store refresh token in database
     await prisma.user.update({
@@ -220,8 +228,16 @@ export class AuthService {
         );
       }
 
-      const accessToken = this.generateAccessToken(user.id);
-      const newRefreshToken = this.generateRefreshToken(user.id);
+      const accessToken = this.generateAccessToken({
+        userId: user.id,
+        email: user.email,
+        name: user.name,
+      });
+      const newRefreshToken = this.generateRefreshToken({
+        userId: user.id,
+        email: user.email,
+        name: user.name,
+      });
 
       await prisma.user.update({
         where: { id: user.id },
@@ -270,14 +286,14 @@ export class AuthService {
     }
   }
 
-  private generateAccessToken(userId: string): string {
-    return jwt.sign({ userId }, ENV.JWT_SECRET, {
+  private generateAccessToken(payload: { userId: string, email: string, name: string }): string {
+    return jwt.sign(payload, ENV.JWT_SECRET, {
       expiresIn: ENV.JWT_EXPIRY,
     });
   }
 
-  private generateRefreshToken(userId: string): string {
-    return jwt.sign({ userId }, ENV.REFRESH_TOKEN_SECRET, {
+  private generateRefreshToken(payload: { userId: string, email: string, name: string }): string {
+    return jwt.sign(payload, ENV.REFRESH_TOKEN_SECRET, {
       expiresIn: ENV.REFRESH_TOKEN_EXPIRY,
     });
   }

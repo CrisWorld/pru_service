@@ -2,6 +2,7 @@ import express from "express";
 import { ENV } from "@/config/env";
 import userRoutes from "@/routes/user.routes";
 import authRoutes from "@/routes/auth.routes";
+import storeRoutes from "@/routes/store.routes";
 import { errorHandler } from "@/middleware/errorHandler";
 import { setupSecurityHeaders } from "@/middleware/securityHeaders";
 import { apiLimiter } from "@/middleware/rateLimiter";
@@ -63,6 +64,7 @@ app.get("/health", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/store", storeRoutes);
 
 // Move Swagger docs before error handler
 const swaggerOptions = {
