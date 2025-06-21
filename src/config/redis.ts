@@ -1,9 +1,9 @@
 import { createClient } from 'redis';
-
+import { ENV } from './env';
+console.log('Redis client created with URL:', ENV.REDIS_URI);
 const redisClient = createClient({
-    url: process.env.REDIS_URL,
+    url: ENV.REDIS_URI,
 });
-console.log('Redis client created with URL:', process.env.REDIS_URL);
 // Connect to Redis
 redisClient.connect().catch(console.error);
 

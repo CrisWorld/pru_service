@@ -21,8 +21,8 @@ export class EmailService {
         rejectUnauthorized: true
       }
     });
-    this.fromAddress = ENV.SMTP_FROM || 'noreply@example.com';
-    
+    this.fromAddress = ENV.SMTP_FROM || 'noreply@veiloflengend.com';
+
     logger.info("Using SMTP configuration", {
       context: "EmailService.constructor",
       host: ENV.SMTP_HOST,
@@ -30,7 +30,7 @@ export class EmailService {
 
     // Add email template precompilation
     this.precompileTemplates();
-    
+
     // Add connection testing
     this.testConnection();
   }
@@ -59,14 +59,12 @@ export class EmailService {
     name: string,
     verificationToken: string
   ): Promise<void> {
-    const verificationUrl = `${ENV.SERVER_URL}/api/auth/verify-email/${verificationToken}`; // TODO: Change this to frontend URL
-
     try {
       const info = await this.transporter.sendMail({
         from: this.fromAddress,
         to,
         subject: "Verify your email address",
-        html: getVerificationEmailTemplate(name, verificationUrl),
+        html: getVerificationEmailTemplate(name, verificationToken),
       });
 
       logger.info("Verification email sent", {

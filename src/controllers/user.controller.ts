@@ -39,13 +39,6 @@ export class UserController extends BaseController {
     });
   }
 
-  addPoint = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-    await this.handleRequest(req, res, next, async () => {
-      const { roomName } = req.params;
-      return await this.userService.addPoint(roomName);
-    });
-  }
-
   buyAvatar = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     await this.handleRequest(req, res, next, async () => {
       const { avatarId } = req.params;

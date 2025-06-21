@@ -3,6 +3,7 @@ import { ENV } from "@/config/env";
 import userRoutes from "@/routes/user.routes";
 import authRoutes from "@/routes/auth.routes";
 import storeRoutes from "@/routes/store.routes";
+import gameRoutes from "@/routes/game.routes";
 import { errorHandler } from "@/middleware/errorHandler";
 import { setupSecurityHeaders } from "@/middleware/securityHeaders";
 import { apiLimiter } from "@/middleware/rateLimiter";
@@ -65,6 +66,7 @@ app.get("/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/store", storeRoutes);
+app.use("/api/game", gameRoutes);
 
 // Move Swagger docs before error handler
 const swaggerOptions = {
@@ -101,6 +103,7 @@ app.use("/api/users", cache({ duration: 300 }));
 
 // Monitoring routes
 app.use("/monitoring", monitoringRoutes);
+
 
 // Add this as the last middleware (before error handler)
 app.use(notFoundHandler);

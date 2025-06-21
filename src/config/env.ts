@@ -23,6 +23,7 @@ const envSchema = z.object({
   APP_NAME: process.env.NODE_ENV === "development" ? z.string().optional().default("Express Boilerplate") : z.string(),
   SERVER_URL: z.string().url(),
   PROMETHEUS_URL: z.string().url().optional().default('http://localhost:9090'),
+  REDIS_URI: z.string().url().optional().default('redis-18151.c337.australia-southeast1-1.gce.redns.redis-cloud.com:18151'),
 });
 
 export const ENV = envSchema.parse(process.env);
@@ -35,7 +36,7 @@ if (process.env.NODE_ENV === 'production') {
     'SMTP_USER',
     'SMTP_PASSWORD'
   ];
-  
+
   requiredFields.forEach(field => {
     if (!process.env[field]) {
       throw new Error(`Missing required env variable: ${field}`);
