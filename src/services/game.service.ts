@@ -33,10 +33,6 @@ export class GameService {
     }
 
     async removeRoom(roomId: string) {
-        const isRoomExists = await redisClient.exists(`room:${roomId}`);
-        if (!isRoomExists) {
-            throw new AppError("Room not found", 404);
-        }
         await redisClient.del(`room:${roomId}`);
         const playerKeys = await redisClient.keys(`room:${roomId}:players:*`);
         if (playerKeys.length > 0) {
