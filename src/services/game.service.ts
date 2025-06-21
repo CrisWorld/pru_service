@@ -7,10 +7,10 @@ export class GameService {
         playerIds: string[];
         startedAt: Date;
     }) {
-        let isRoomExists = await redisClient.exists(`room:${room.roomId}`);
-        if (isRoomExists) {
-            throw new AppError("Room already exists", 409);
-        }
+        // let isRoomExists = await redisClient.exists(`room:${room.roomId}`);
+        // if (isRoomExists) {
+        //     throw new AppError("Room already exists", 409);
+        // }
         redisClient.set(
             `room:${room.roomId}`, JSON.stringify(room), {
             EX: 60 * 60 // 1 hour expiration
