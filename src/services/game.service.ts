@@ -11,6 +11,7 @@ export class GameService {
         // if (isRoomExists) {
         //     throw new AppError("Room already exists", 409);
         // }
+        await this.removeRoom(room.roomId); // Ensure room is removed before creating a new one
         redisClient.set(
             `room:${room.roomId}`, JSON.stringify(room), {
             EX: 60 * 60 // 1 hour expiration
