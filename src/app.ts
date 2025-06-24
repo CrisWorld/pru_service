@@ -42,8 +42,8 @@ const setupMiddleware = (app: express.Application) => {
   app.use(metricsMiddleware);
 
   // Rate Limiting
-  app.use("/api/auth", authLimiter);
-  app.use("/api", apiLimiter);
+  // app.use("/api/auth", authLimiter);
+  // app.use("/api", apiLimiter);
 };
 
 setupMiddleware(app);
