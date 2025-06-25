@@ -3,6 +3,7 @@ import { requireAuth } from "@/middleware/authMiddleware";
 import { GameService } from "@/services/game.service";
 import { UserService } from "@/services/user.service";
 import { GameController } from "@/controllers/game.controller";
+import { GeminiService } from "@/services/gemini.service";
 
 const router = Router();
 
@@ -16,7 +17,8 @@ const router = Router();
 // Init services & controller
 const gameService = new GameService();
 const userService = new UserService();
-const gameController = new GameController(gameService, userService);
+const geminiService = new GeminiService();
+const gameController = new GameController(gameService, userService, geminiService);
 
 // Middleware bảo vệ route
 router.use(requireAuth);
@@ -95,5 +97,31 @@ router.post("/create-room", gameController.createRoom);
  *         description: Room removed successfully
  */
 router.delete("/remove-room", gameController.removeRoom);
+
+/**
+ * @swagger
+ * /game/ask-ai:
+ *   post:
+ *     summary: Ask Gemini AI to suggest questions and summarize context
+ *     tags: [Game]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               question:
+ *                 type: string
+ *               context:
+ *                 type: string
+ *                 required: false   
+ *     responses:
+ *       200:
+ *         description: AI responded with suggested questions and context summary
+ */
+router.post("/ask-ai", gameController.askAI);
 
 export default router;

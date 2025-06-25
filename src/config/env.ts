@@ -24,6 +24,8 @@ const envSchema = z.object({
   SERVER_URL: z.string().url(),
   PROMETHEUS_URL: z.string().url().optional().default('http://localhost:9090'),
   REDIS_URI: z.string().url().optional().default('redis-18151.c337.australia-southeast1-1.gce.redns.redis-cloud.com:18151'),
+  GEMINI_API_KEY: z.string(),
+  GEMINI_API_URL: z.string().url()
 });
 
 export const ENV = envSchema.parse(process.env);
