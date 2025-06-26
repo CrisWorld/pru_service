@@ -18,7 +18,7 @@ const router = Router();
 const storeService = new StoreService();
 const storeController = new StoreController(storeService);
 
-// router.use(requireAuth);
+router.use(requireAuth);
 
 /**
  * @swagger
