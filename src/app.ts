@@ -4,6 +4,7 @@ import userRoutes from "@/routes/user.routes";
 import authRoutes from "@/routes/auth.routes";
 import storeRoutes from "@/routes/store.routes";
 import gameRoutes from "@/routes/game.routes";
+import photonRoutes from "@/routes/photon.routes"; // Import Photon routes
 import { errorHandler } from "@/middleware/errorHandler";
 import { setupSecurityHeaders } from "@/middleware/securityHeaders";
 import { apiLimiter } from "@/middleware/rateLimiter";
@@ -67,7 +68,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/store", storeRoutes);
 app.use("/api/game", gameRoutes);
-
+app.use("/api/photon", photonRoutes); // Import Photon routes
 // Move Swagger docs before error handler
 const swaggerOptions = {
   explorer: true,
