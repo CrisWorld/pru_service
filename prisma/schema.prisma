@@ -57,6 +57,7 @@ model UserAvatar {
 
 model Avatar {
   id          String       @id @default(uuid())
+  title       String       @db.Text
   avatarURL   String       @db.Text
   price       Int          @default(0)
   createdAt   DateTime     @default(now())
@@ -81,6 +82,7 @@ model UserBackground {
 
 model Background {
   id              String           @id @default(uuid())
+  title           String           @db.Text
   backgroundURL   String           @db.Text
   createdAt       DateTime         @default(now())
   price           Int              @default(0)

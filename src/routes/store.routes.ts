@@ -18,7 +18,7 @@ const router = Router();
 const storeService = new StoreService();
 const storeController = new StoreController(storeService);
 
-router.use(requireAuth);
+// router.use(requireAuth);
 
 /**
  * @swagger
@@ -26,8 +26,6 @@ router.use(requireAuth);
  *   get:
  *     summary: Get store backgrounds
  *     tags: [Store]
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: List of backgrounds
@@ -40,8 +38,6 @@ router.get("/backgrounds", storeController.getBackgrounds);
  *   get:
  *     summary: Get store avatars
  *     tags: [Store]
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: List of avatars
