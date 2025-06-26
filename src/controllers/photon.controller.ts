@@ -9,7 +9,7 @@ export class PhotonController extends BaseController {
 
     vertifyToken = async (request: Request, response: Response, next: NextFunction): Promise<void> => {
         await this.handleRequest(request, response, next, async () => {
-            const token = request.body?.AuthParameters?.token;
+            const token = request.query.token;
 
             if (!token || typeof token !== "string") {
                 return response.json({

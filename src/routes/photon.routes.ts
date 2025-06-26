@@ -14,6 +14,6 @@ const router = Router();
 const photonService = new PhotonService();
 const photonController = new PhotonController(photonService);
 
-router.post("/auth", photonController.vertifyToken);
+router.get("/auth", photonController.vertifyToken);
 
 export default router;
