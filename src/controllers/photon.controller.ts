@@ -12,25 +12,25 @@ export class PhotonController extends BaseController {
             const token = request.body?.AuthParameters?.token;
 
             if (!token || typeof token !== "string") {
-                return {
+                return response.json({
                     ResultCode: 2,
                     Message: "Missing or invalid token",
-                };
+                });
             }
 
             const user = await this.photoService.vertifyToken(token); // trả về null nếu sai
 
             if (!user) {
-                return {
+                return response.json({
                     ResultCode: 3,
                     Message: "Token verification failed",
-                };
+                });
             }
 
-            return {
+            return response.json({
                 ResultCode: 1,
                 UserId: user.userId, // có thể dùng user.email nếu bạn muốn
-            };
+            });
         });
     }
 
