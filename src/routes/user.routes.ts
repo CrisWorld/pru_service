@@ -236,7 +236,7 @@ router.post("/buy-background/:backgroundId",
 /**
 * @swagger
 * /users/change-avatar/{avatarId}:
-*   post:
+*   put:
 *     summary: Change avatar for user
 *     tags: [Users]
 *     security:
@@ -263,7 +263,7 @@ router.put("/change-avatar/:avatarId",
 /**
 * @swagger
 * /users/change-background/{backgroundId}:
-*   post:
+*   put:
 *     summary: Change background for user
 *     tags: [Users]
 *     security:
