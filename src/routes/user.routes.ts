@@ -81,19 +81,12 @@ router.use(requireAuth);
 
 /**
  * @swagger
- * /users/profile:
+ * /users/info:
  *   get:
- *     summary: Get user by ID
+ *     summary: Get user information
  *     tags: [Users]
  *     security:
  *       - bearerAuth: []
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: string
- *           format: uuid
  *     responses:
  *       200:
  *         description: User details
@@ -104,11 +97,7 @@ router.use(requireAuth);
  *       404:
  *         description: User not found
  */
-router.get(
-  "/profile",
-  cache({ duration: 60 }), // Cache for 1 minute
-  userController.getProfile
-);
+router.get("/info", userController.getProfile)
 
 // /**
 //  * @swagger
