@@ -284,18 +284,23 @@ export class UserService {
       throw new AppError("User does not own this avatar", 400, ErrorCode.NOT_FOUND);
     }
 
-    // Update user's avatar setting
-    return prisma.setting.update({
+    // create or update user's setting if it does not exist
+    const setting = await prisma.setting.upsert({
       where: { userId },
-      data: {
-        avatar: {
-          connect: { id: avatarId }
-        }
+      update: {
+        userAvatarId: avatarId,
+      },
+      create: {
+        userId,
+        userAvatarId: avatarId,
+        backgroundId: "5aa34c62-8984-4672-b52d-c43e28416832", // Default background
       },
       select: {
         avatar: true,
-      },
+      }
     });
+    // Update user's avatar setting
+    return setting;
   }
 
   changeBackground = async (userId: string, backgroundId: string) => {
@@ -323,18 +328,25 @@ export class UserService {
       throw new AppError("User does not own this background", 400, ErrorCode.NOT_FOUND);
     }
 
-    // Update user's background setting
-    return prisma.setting.update({
+    // create or update user's setting if it does not exist
+    const setting = await prisma.setting.upsert({
       where: { userId },
-      data: {
+      update: {
         background: {
           connect: { id: backgroundId }
-        }
+        },
+      },
+      create: {
+        userId,
+        backgroundId,
+        userAvatarId: "39fee6a0-05d1-43a6-b10f-eb9d436b4225",
       },
       select: {
         background: true,
-      },
+      }
     });
+    // Update user's background setting
+    return setting;
   }
 
 
