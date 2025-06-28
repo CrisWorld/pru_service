@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.1/lottie.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -131,11 +132,33 @@
         .swiper-v {
             background: #000;
         }
+
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white; /* hoặc màu nền khác */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
     </style>
 </head>
 <body class="cosmic-bg min-h-screen text-white">
     <!-- Navigation -->
-    <nav class="relative z-10 px-6 py-4">
+        <div id="preloader">
+            <div id="animation"></div>
+        </div>    
+        <nav class="relative z-10 px-6 py-4">
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Logo -->
             <div class="flex items-center space-x-2">
@@ -259,5 +282,24 @@
             loop: true,
         });
   </script>
+  <script>
+        const preloader = document.getElementById('preloader');
+
+        const animation = lottie.loadAnimation({
+            container: document.getElementById('animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: '/game/animation.json',
+        });
+
+        // Khi animation đã sẵn sàng
+        animation.addEventListener('DOMLoaded', () => {
+            // Chờ 1s trước khi fade out để người dùng thấy được hiệu ứng
+            setTimeout(() => {
+            preloader.classList.add('fade-out');
+            }, 1000); // hoặc bỏ delay nếu không cần
+        });
+    </script>
 </body>
 </html>
