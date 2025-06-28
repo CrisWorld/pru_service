@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord | Your Place to Talk and Hang Out</title>
+    <title>FlexUnity | Veil of Legends</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -27,12 +27,16 @@
         }
     </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-        
         body {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .head {
             font-family: 'Inter', sans-serif;
         }
-        
+
         .cosmic-bg {
             background: linear-gradient(135deg, #1a3b2e 0%, #2d5a3d 25%, #4a9b8e 50%, #7bc4a4 75%, #a8d5ba 100%);
             position: relative;
@@ -135,22 +139,17 @@
         <div class="max-w-7xl mx-auto flex items-center justify-between">
             <!-- Logo -->
             <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-lime-100 rounded-full flex items-center justify-center mystical-glow">
-                    <img src="spy_icon_transparent.png" />
+                <div class="w-10 h-10 bg-green-200 rounded-full flex items-center justify-center mystical-glow">
+                    <img src="logo.png" />
                 </div>
-                <span class="text-xl font-bold">FlexUnity</span>
+                <span class="text-md font-bold pl-2 head">VEIL OF LEGENDS</span>
             </div>
             
             <!-- Open Discord Button -->
             <div class="flex items-center">
-                <a href="/game/game.zip" class="bg-white text-mystical-green px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors mystical-glow">
+                <a href="/game/game.zip" class="bg-white text-md head text-mystical-green px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors mystical-glow">
                     Download Now
                 </a>
-                
-                <!-- Mobile menu button -->
-                <button class="lg:hidden ml-4 text-white">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
             </div>
         </div>
     </nav>
@@ -162,11 +161,11 @@
                 <!-- Left Content -->
                 <div class="space-y-8">
                     <div class="space-y-6">
-                        <h1 class="text-4xl lg:text-6xl xl:text-7xl font-black leading-tight">
+                        <h1 class="text-3xl lg:text-6xl xl:text-7xl font-black leading-tight head">
                             <span class="block">THE ULTIMATE SOCIAL</span>
                             <span class="block">DEDUCTION GAME!</span>
                         </h1>       
-                        <ul class="text-lg lg:text-xl text-green-100 max-w-lg leading-relaxed">
+                        <ul class="text-md lg:text-lg text-green-100 max-w-lg leading-relaxed">
                             <li>A secret location.</li>
                             <li>Everyone knows where they are – except one person.</li>
                             <li>Can you ask the right questions to expose the spy?</li>
@@ -175,7 +174,7 @@
                     </div>
                     
                     <!-- CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4">
+                    <div class="flex flex-col sm:flex-row gap-4 head">
                         <button onclick="window.location.href='/game/game.zip'" class="btn-primary px-8 py-4 rounded-full font-medium text-lg flex items-center justify-center space-x-2 mystical-glow">
                             <i class="fas fa-download"></i>
                             <span>Download for Windows</span>
@@ -212,7 +211,7 @@
         <div class="absolute top-3/4 right-20 w-6 h-12 bg-teal-300 rounded-full floating-element opacity-30 transform -rotate-12" style="animation-delay: 4s;"></div>
     </main>
     <section class="mt-[120px] mb-10">
-        <h1 class="text-4xl lg:text-4xl xl:text-5xl font-black leading-tight text-center mb-8">
+        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-black leading-tight text-center mb-8 head">
             GAME SCENES
         </h1>
         <!-- Horizontal Swiper -->

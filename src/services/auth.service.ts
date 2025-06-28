@@ -30,7 +30,7 @@ export class AuthService {
     const hashedPassword = await bcrypt.hash(password, 10);
     const verificationToken = this.generateVerificationToken();
     const verificationExpires = new Date(Date.now() + 5 * 60 * 1000); // 5 minutes
-
+    // create setting 
     const user = await prisma.user.create({
       data: {
         email,
@@ -45,6 +45,14 @@ export class AuthService {
         email: true,
         name: true,
         createdAt: true,
+      },
+    });
+
+    await prisma.setting.create({
+      data: {
+        backgroundId: "5aa34c62-8984-4672-b52d-c43e28416832",
+        userAvatarId: "39fee6a0-05d1-43a6-b10f-eb9d436b4225",
+        userId: user.id,
       },
     });
 
