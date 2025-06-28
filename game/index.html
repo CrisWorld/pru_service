@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord | Your Place to Talk and Hang Out</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'discord-blue': '#5865F2',
+                        'discord-dark': '#23272A',
+                        'discord-gray': '#2C2F33',
+                        'mystical-green': '#2d5a3d',
+                        'mystical-teal': '#4a9b8e',
+                        'mystical-light': '#7bc4a4',
+                    },
+                    fontFamily: {
+                        'discord': ['Whitney', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .cosmic-bg {
+            background: linear-gradient(135deg, #1a3b2e 0%, #2d5a3d 25%, #4a9b8e 50%, #7bc4a4 75%, #a8d5ba 100%);
+            position: relative;
+        }
+        
+        .cosmic-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(171, 255, 171, 0.6), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(144, 238, 144, 0.5), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.6), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes twinkle {
+            0% { opacity: 0.4; }
+            100% { opacity: 0.8; }
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .nav-item {
+            transition: all 0.2s ease;
+        }
+        
+        .nav-item:hover {
+            color: #a8d5ba;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #4a9b8e, #7bc4a4);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(74, 155, 142, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(168, 213, 186, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 213, 186, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(168, 213, 186, 0.25);
+            transform: translateY(-2px);
+        }
+        
+        .mystical-glow {
+            box-shadow: 0 0 20px rgba(123, 196, 164, 0.3);
+        }
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .swiper-v {
+            background: #000;
+        }
+    </style>
+</head>
+<body class="cosmic-bg min-h-screen text-white">
+    <!-- Navigation -->
+    <nav class="relative z-10 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-lime-100 rounded-full flex items-center justify-center mystical-glow">
+                    <img src="spy_icon_transparent.png" />
+                </div>
+                <span class="text-xl font-bold">FlexUnity</span>
+            </div>
+            
+            <!-- Open Discord Button -->
+            <div class="flex items-center">
+                <a href="/game/game.zip" class="bg-white text-mystical-green px-4 py-2 rounded-full font-medium hover:bg-gray-100 transition-colors mystical-glow">
+                    Download Now
+                </a>
+                
+                <!-- Mobile menu button -->
+                <button class="lg:hidden ml-4 text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <main class="relative z-10 px-6 py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="space-y-8">
+                    <div class="space-y-6">
+                        <h1 class="text-4xl lg:text-6xl xl:text-7xl font-black leading-tight">
+                            <span class="block">THE ULTIMATE SOCIAL</span>
+                            <span class="block">DEDUCTION GAME!</span>
+                        </h1>       
+                        <ul class="text-lg lg:text-xl text-green-100 max-w-lg leading-relaxed">
+                            <li>A secret location.</li>
+                            <li>Everyone knows where they are – except one person.</li>
+                            <li>Can you ask the right questions to expose the spy?</li>
+                            <li>Or will you blend in and fool them all?</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="window.location.href='/game/game.zip'" class="btn-primary px-8 py-4 rounded-full font-medium text-lg flex items-center justify-center space-x-2 mystical-glow">
+                            <i class="fas fa-download"></i>
+                            <span>Download for Windows</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Hero Image -->
+                <div class="relative">
+                    <div class="floating-element">
+                        <img 
+                            src="main-banner.png" 
+                            alt="Hoi An Spy Game" 
+                            class="w-full h-auto max-w-2xl mx-auto rounded-lg shadow-lg shadow-green-300 mystical-glow"
+                        />
+                    </div>
+                    
+                    <!-- Floating decorative elements -->
+                    <div class="absolute top-10 left-10 w-4 h-4 bg-green-400 rounded-full floating-element opacity-70"></div>
+                    <div class="absolute top-32 right-16 w-6 h-6 bg-teal-400 rounded-full floating-element opacity-50" style="animation-delay: 1s;"></div>
+                    <div class="absolute bottom-20 left-20 w-3 h-3 bg-emerald-400 rounded-full floating-element opacity-60" style="animation-delay: 2s;"></div>
+                    <div class="absolute bottom-40 right-8 w-5 h-5 bg-green-300 rounded-full floating-element opacity-40" style="animation-delay: 0.5s;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional floating mystical elements -->
+        <div class="absolute top-20 left-1/4 w-8 h-8 bg-gradient-to-r from-green-400 to-teal-400 rounded-full floating-element opacity-30"></div>
+        <div class="absolute top-1/3 right-1/4 w-12 h-12 bg-gradient-to-r from-teal-400 to-emerald-400 rounded-full floating-element opacity-20" style="animation-delay: 1.5s;"></div>
+        <div class="absolute bottom-1/4 left-1/3 w-6 h-6 bg-gradient-to-r from-emerald-400 to-green-400 rounded-full floating-element opacity-35" style="animation-delay: 3s;"></div>
+        
+        <!-- Mystical leaf-like elements -->
+        <div class="absolute top-1/2 left-10 w-4 h-8 bg-green-300 rounded-full floating-element opacity-25 transform rotate-45" style="animation-delay: 2.5s;"></div>
+        <div class="absolute top-3/4 right-20 w-6 h-12 bg-teal-300 rounded-full floating-element opacity-30 transform -rotate-12" style="animation-delay: 4s;"></div>
+    </main>
+    <section class="mt-[120px] mb-10">
+        <h1 class="text-4xl lg:text-4xl xl:text-5xl font-black leading-tight text-center mb-8">
+            GAME SCENES
+        </h1>
+        <!-- Horizontal Swiper -->
+        <div class="swiper mySwiper swiper-horizontal px-[20%] mb-0">
+            <div class="swiper-wrapper">
+                <!-- Horizontal Slide 1 -->
+                <div class="swiper-slide">
+                    <img src="/game/1.png" alt="Horizontal Slide 1" class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/game/2.png" alt="Vertical Slide 1" class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/game/3.png" alt="Vertical Slide 1" class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/game/4.png" alt="Vertical Slide 1" class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/game/5.png" alt="Vertical Slide 1" class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/game/6.png" alt="Vertical Slide 1" class="w-full h-full object-cover">
+                </div>
+                <div class="swiper-slide">
+                    <img src="/game/7.png" alt="Vertical Slide 1" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+        <!-- Horizontal Swiper Pagination -->
+        <div class="swiper-pagination"></div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 50,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+            loop: true,
+        });
+  </script>
+</body>
+</html>

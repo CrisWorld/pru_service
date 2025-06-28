@@ -34,6 +34,9 @@ const setupMiddleware = (app: express.Application) => {
   // setupSecurityHeaders(app as express.Express);
   // app.use(cors({ origin: ENV.FRONTEND_URL, credentials: true }));
 
+  // public assets route
+
+  app.use("/game", express.static("game"));
   // Performance
   app.use(compressionMiddleware);
   app.use(express.json({ limit: "10kb" }));
